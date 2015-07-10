@@ -43,6 +43,13 @@ Plugin 'tsaleh/vim-align'
 Plugin 'rking/ag.vim'
 " buffers
 Plugin 'fholgado/minibufexpl.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin "pangloss/vim-javascript"
+Plugin 'vim-scripts/ctags.vim.git'
+Plugin 'Rename.vim'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/ctags.vim.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -159,6 +166,8 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -252,3 +261,13 @@ set diffopt+=vertical
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
+
+"CUSTOM FUNCTIONS
+"======================================================================
+"Autosave on lost focus
+"-----------------------
+function! FocusLost_SaveFiles()
+	exe ":au FocusLost" expand("%") ":wa"
+endfunction
+:call FocusLost_SaveFiles()
+
