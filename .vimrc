@@ -172,7 +172,9 @@ autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+"Silver Searcher
+"-------------------------------------------------
+ca Ag Ag!
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor

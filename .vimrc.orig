@@ -1,0 +1,170 @@
+set autowriteall
+set number
+au FocusLost * silent! wa
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+ 
+"VUNDLE CONFIG
+"============================================
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+ 
+Bundle 'gmarik/vundle'
+
+"COLOR SCHEMES
+"=========================================================
+Bundle 'https://github.com/altercation/vim-colors-solarized'
+
+"Color Scheme Config
+"---------------------------------------------------------
+colorscheme solarized
+set background=dark
+set guifont=Monaco:h13
+
+"SETTINGS
+"=========================================================
+syntax enable
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.gz 
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+set mouse=a
+" PLUGINS 
+"=========================================================
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-rails'
+Bundle "pangloss/vim-javascript"
+Bundle 'skalnik/vim-vroom'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'wookiehangover/jshint.vim'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'taglist.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-ragtag'
+Bundle 'tpope/vim-endwise'
+Bundle 'kien/ctrlp.vim'
+Bundle 'ddollar/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'rking/ag.vim'
+Bundle 'bling/vim-airline.git'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'vim-scripts/ctags.vim.git'
+Bundle 'mattn/emmet-vim'
+Bundle 'Rename.vim'
+
+filetype plugin indent on     " required!
+
+
+" MY KEYBINDINGS 
+" ==================================================
+let mapleader =","
+
+map <leader>rlv :source ~/.vimrc
+
+" kj - The intuitive way to get out of insert mode
+imap kj         <Esc>
+imap jj         <Esc>
+
+" Split screen
+map <leader>v   :vsp<CR>
+map <leader>h   :sp<CR>
+
+" Auto-indent whole file
+nmap <leader>=  gg=G``
+map <silent> <F7> gg=G``:echo "Reformatted."<CR>
+
+" Search
+nmap <leader>s  :%s/
+vmap <leader>s  :s/
+
+:set hidden
+"Clear search
+map <Space> :noh<cr>
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"Moving lines around
+"=================================================
+
+" Normal mode
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+
+" Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+
+" Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+"PLUGIN CUSTOMIZATIONS
+"=================================================
+"
+"Emmet
+let g:user_emmet_expandabbr_key = '<Tab>'
+
+" CTRLP
+"-------------------------------------------------
+map <leader>f   :CtrlP<CR>
+imap <leader>f   <ESC>:CtrlP<CR>
+let g:ctrlp_custom_ignore = '\v/vendor|/bin|/node_modules|/public/assets|/log'
+let g:ctrlp_cmd= 'CtrlP'
+let g:ctrlp_show_hidden = 1
+noremap <D-r> :CtrlPTag<CR>
+
+"NERDCommenter 
+"-------------------------------------------------
+map <leader>/   <plug>NERDCommenterToggle
+map <D-/>       <plug>NERDCommenterToggle
+imap <D-/>      <Esc><plug>NERDCommenterToggle i
+
+"NERDTreeToggle
+"-------------------------------------------------
+map \ :NERDTreeToggle<CR>
+
+
+"Taglist
+"-------------------------------------------------
+map <F2> :TlistToggle<CR>
+
+
+"EasyMotion
+"-------------------------------------------------
+let g:EasyMotion_leader_key = '<space>'
+
+"Silver Searcher
+"-------------------------------------------------
+ca Ag Ag!
+
+
+" VUNDLE HELP 
+" "===========================================================
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle commands are not allowed.
+
+"CUSTOM FUNCTIONS
+"======================================================================
+"Autosave on lost focus
+"-----------------------
+function! FocusLost_SaveFiles()
+	exe ":au FocusLost" expand("%") ":wa"
+endfunction
+:call FocusLost_SaveFiles()
+
