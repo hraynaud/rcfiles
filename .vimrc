@@ -10,6 +10,11 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+"COLOR SCHEMES
+"=========================================================
+Plugin 'altercation/vim-colors-solarized'
+
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -44,8 +49,7 @@ Plugin 'rking/ag.vim'
 " buffers
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin "pangloss/vim-javascript"
-Plugin 'vim-scripts/ctags.vim.git'
+Plugin 'pangloss/vim-javascript'
 Plugin 'Rename.vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'vim-ruby/vim-ruby'
@@ -53,6 +57,12 @@ Plugin 'vim-scripts/ctags.vim.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+"Color Scheme Config
+"---------------------------------------------------------
+colorscheme solarized
+set background=dark
+set guifont=Monaco:h13
 
 filetype plugin indent on    " required
 
@@ -172,19 +182,33 @@ autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" CTRLP
+"-------------------------------------------------
+map <leader>f   :CtrlP<CR>
+imap <leader>f   <ESC>:CtrlP<CR>
+let g:ctrlp_custom_ignore = '\v/vendor|/bin|/node_modules|/public/assets|/log'
+
+let g:ctrlp_cmd= 'CtrlP'
+let g:ctrlp_show_hidden = 0
+noremap <D-r> :CtrlPTag<CR>
+
+
+
 "Silver Searcher
 "-------------------------------------------------
 ca Ag Ag!
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+"if executable('ag')
+  "" Use Ag over Grep
+  ""===================
+  "set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  "" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  ""---------------------------------------------------------------------
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+  "" ag is fast enough that CtrlP doesn't need to cache
+  "let g:ctrlp_use_caching = 1
+"endif
 
 " Make it obvious where 80 characters is
 set textwidth=80
