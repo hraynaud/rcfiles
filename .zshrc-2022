@@ -1,0 +1,9 @@
+#
+export PATH="/Applications/MacVim.app/Contents/bin:$PATH"  
+
+alias ezrc='mvim ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/Users/herbyraynaud/.rbenv/shims/ruby":$PATH
+eval "$(rbenv init -)"
