@@ -1,0 +1,33 @@
+
+alias ezrc='mvim ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/Users/herbyraynaud/.rbenv/shims/ruby":$PATH
+export PATH="/Applications/MacVim.app/Contents/bin:$PATH" 
+export ZSH="/Users/herbyraynaud/.oh-my-zsh/"
+
+
+plugins=(git)
+ZSH_THEME="robbyrussell"
+source $ZSH/oh-my-zsh.sh
+
+#Start postgres
+alias start_pg='pg_ctl -D /opt/homebrew/var/postgres start'
+
+#Rails
+alias be='bundle exec'
+alias ber='bundle exec rspec'
+alias bers='bundle exec rails s'
+alias berc='bundle exec rails c'
+
+#projects
+alias mego="cd ~/dev-work/konmego/;source .env-local" 
+alias megoc="cd ~/dev-work/mego-client/" 
+
+#tooling
+eval "$(rbenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
